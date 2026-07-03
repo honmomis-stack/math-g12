@@ -1,0 +1,85 @@
+export const chapters = [
+  {
+    id: 1,
+    title: "ជំពូកទី១៖ អនុគមន៍",
+    order: 1,
+    subchapters: [
+      { id: 101, title: "១. លីមីតនៃអនុគមន៍", order: 1 },
+      { id: 102, title: "២. ដេរីវេនៃអនុគមន៍", order: 2 }
+    ]
+  },
+  {
+    id: 2,
+    title: "ជំពូកទី២៖ ធរណីមាត្រ",
+    order: 2,
+    subchapters: [
+      { id: 201, title: "១. វ៉ិចទ័រក្នុងលំហ", order: 1 }
+    ]
+  }
+];
+
+export const subchapters = [
+  {
+    id: 101,
+    chapter_id: 1,
+    title: "១. លីមីតនៃអនុគមន៍",
+    content: `
+ការគណនាលីមីតនៃអនុគមន៍ត្រីកោណមាត្រនិងអនុគមន៍អិចស្ប៉ូណង់ស្យែលតម្រូវឱ្យយើងស្គាល់រូបមន្តគ្រឹះមួយចំនួន។
+
+### រូបមន្តគ្រឹះ
+
+$$ \\lim_{x \\to 0} \\frac{\\sin(x)}{x} = 1 $$
+
+### ឧទាហរណ៍
+
+គណនាលីមីតនៃអនុគមន៍ខាងក្រោម៖
+
+$$ \\lim_{x \\to 0} \\frac{\\sin(3x)}{x} $$
+
+**ដំណោះស្រាយ:**
+យើងគុណភាគយក និងភាគបែងនឹង 3៖
+$$ \\lim_{x \\to 0} \\frac{3\\sin(3x)}{3x} = 3 \\times 1 = 3 $$
+    `,
+    questions: [
+      {
+        id: "q1",
+        type: "mcq",
+        text: "តើលីមីតនៃ $\\lim_{x \\to 0} \\frac{\\tan(x)}{x}$ ស្មើប៉ុន្មាន?",
+        choices: [
+          { id: "c1", text: "$0$", is_correct: false },
+          { id: "c2", text: "$1$", is_correct: true },
+          { id: "c3", text: "$\\infty$", is_correct: false }
+        ],
+        hints: [
+          "សូមគិតពីរូបមន្តគ្រឹះរបស់លីមីតនៃ $\\sin(x)$ និងទំនាក់ទំនងរវាង $\\tan(x)$ ជាមួយ $\\sin(x)$ និង $\\cos(x)$។",
+          "សាកល្បងបំបែក $\\tan(x) = \\frac{\\sin(x)}{\\cos(x)}$",
+          "នៅពេលសរសេរជា $\\frac{\\sin(x)}{x} \\times \\frac{1}{\\cos(x)}$ តើអ្នកបានលទ្ធផលអ្វី?"
+        ]
+      },
+      {
+        id: "q2",
+        type: "math",
+        text: "គណនាលីមីត $\\lim_{x \\to 0} \\frac{\\sin(5x)}{x}$",
+        correctAnswer: "5", // Simplified comparison for mock
+        hints: [
+          "ចងចាំរូបមន្ត $\\lim_{u \\to 0} \\frac{\\sin(u)}{u} = 1$",
+          "តើត្រូវគុណនឹងប៉ុន្មានដើម្បីឱ្យភាគបែងមានរាង $5x$?",
+          "ចម្លើយគឺជាមេគុណរបស់អថេរនៅក្នុងស៊ីនុស។"
+        ]
+      }
+    ]
+  },
+  {
+    id: 102,
+    chapter_id: 1,
+    title: "២. ដេរីវេនៃអនុគមន៍",
+    content: `
+ដេរីវេតំណាងឱ្យមេគុណប្រាប់ទិសនៃបន្ទាត់ប៉ះនឹងក្រាបនៃអនុគមន៍។ ខាងក្រោមជាក្រាបនៃអនុគមន៍ $f(x) = x^2$ និងដេរីវេរបស់វា $f'(x) = 2x$។
+    `,
+    graph: {
+      type: "function-plot",
+      functions: ["x^2", "2*x"]
+    },
+    questions: []
+  }
+];
