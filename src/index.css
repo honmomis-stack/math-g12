@@ -1,20 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800&family=Noto+Sans+Khmer:wght@400;600;700&display=swap');
 
 :root {
+  /* Light Theme (Default) */
   --primary: #4F46E5;
   --primary-hover: #4338CA;
   --secondary: #0ea5e9;
+  
+  --bg-color: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  
+  --success: #16a34a;
+  --error: #dc2626;
+  --border: #e2e8f0;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  --font-sans: 'Inter', 'Noto Sans Khmer', sans-serif;
+  --font-display: 'Outfit', 'Noto Sans Khmer', sans-serif;
+  
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 1);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary: #38bdf8;
+  
   --bg-color: #0f172a;
   --surface: #1e293b;
   --surface-hover: #334155;
+  
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
+  
   --success: #22c55e;
   --error: #ef4444;
   --border: #334155;
   
-  --font-sans: 'Inter', 'Noto Sans Khmer', sans-serif;
-  --font-display: 'Outfit', 'Noto Sans Khmer', sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -23,15 +59,21 @@ body {
   background-color: var(--bg-color);
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(30, 41, 59, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.glass:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .btn {
@@ -39,7 +81,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -51,15 +93,25 @@ body {
 .btn-primary {
   background-color: var(--primary);
   color: white;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
 }
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:disabled {
+  background-color: var(--surface-hover);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn-outline {
-  background-color: transparent;
+  background-color: var(--surface);
   border: 1px solid var(--border);
   color: var(--text-main);
 }
@@ -70,19 +122,21 @@ body {
 
 .input-field {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 0.75rem;
   border: 1px solid var(--border);
-  background-color: rgba(15, 23, 42, 0.5);
+  background-color: var(--surface);
   color: var(--text-main);
   font-family: var(--font-sans);
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .input-field:focus {
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .heading {
@@ -90,17 +144,18 @@ body {
 }
 
 .fade-in {
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* KaTeX custom colors */
+/* KaTeX */
 .katex {
-  font-size: 1.1em;
+  font-size: 1.15em;
+  color: var(--text-main);
 }
 
 .katex-display {
@@ -110,23 +165,33 @@ body {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
 
 .markdown-content h1, .markdown-content h2, .markdown-content h3 {
   font-family: var(--font-display);
-  margin-top: 2rem;
+  margin-top: 2.5rem;
+  color: var(--primary);
 }
 
 .markdown-content p {
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.markdown-content ul {
+  line-height: 1.8;
 }
 
 .markdown-content blockquote {
   border-left: 4px solid var(--primary);
   margin: 1.5rem 0;
-  padding-left: 1rem;
+  padding-left: 1.25rem;
   color: var(--text-muted);
+  font-style: italic;
+  background-color: var(--surface);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
