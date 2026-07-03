@@ -36,7 +36,7 @@ export default function Lesson() {
         <ArrowLeft size={20} /> ត្រឡប់ទៅមាតិកាវិញ
       </Link>
       
-      <div className="glass" style={{ padding: '3rem 4rem', borderRadius: '1.5rem', marginBottom: '3rem' }}>
+      <div className="glass lesson-card">
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
           <div style={{ padding: '0.75rem', background: 'rgba(79, 70, 229, 0.1)', borderRadius: '0.75rem', color: 'var(--primary)' }}>
             <BookOpen size={28} />
